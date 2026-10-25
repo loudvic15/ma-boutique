@@ -83,6 +83,14 @@
       padding: 1.2rem;
     }
 
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+
     .badge {
       background: #ef4444;
       color: white;
@@ -90,7 +98,7 @@
       font-weight: bold;
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      align-self: flex-start;
+      display: inline-block;
       margin-bottom: 0.5rem;
     }
 
@@ -220,82 +228,5 @@
   </div>
 
   <script>
-    // Produits tendances avec prix de vente attractifs
-    const products = [
-      { id: 1, name: "Mini Imprimante Portable Bluetooth", desc: "Imprimez vos photos et notes depuis votre smartphone.", price: 29.99, badge: "BEST-SELLER" },
-      { id: 2, name: "Gourde Isotherme Graduée 1L", desc: "Conserve le froid 24h. Sans BPA avec paille intégrée.", price: 19.99, badge: "TENDANCE" },
-      { id: 3, name: "Lampe Sunset Projecteur LED", desc: "Ambiance chaleureuse et idéale pour les photos/vidéos.", price: 14.99, badge: "PROMO" },
-      { id: 4, name: "Écouteurs Sans Fil Reduction de Bruit", desc: "Son HD, autonomie 24h avec boîtier de charge.", price: 39.99, badge: "TOP VENTE" }
-    ];
-
-    let cart = [];
-
-    // Affichage des produits
-    const productList = document.getElementById("product-list");
-    products.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `
-        <div>
-          <span class="badge">${p.badge}</span>
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-        </div>
-        <div>
-          <div class="price">${p.price.toFixed(2)} €</div>
-          <button class="add-btn" onclick="addToCart(${p.id})">Ajouter au panier</button>
-        </div>
-      `;
-      productList.appendChild(card);
-    });
-
-    function toggleCart() {
-      document.getElementById("cart-drawer").classList.toggle("open");
-    }
-
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      const item = cart.find(i => i.id === id);
-      if (item) item.qty++;
-      else cart.push({ ...product, qty: 1 });
-      updateUI();
-      toggleCart();
-    }
-
-    function updateUI() {
-      const countEl = document.getElementById("cart-count");
-      const itemsEl = document.getElementById("cart-items");
-      const totalEl = document.getElementById("cart-total");
-
-      let count = 0, total = 0;
-
-      if (cart.length === 0) {
-        itemsEl.innerHTML = `<p style="color: #64748b; text-align: center;">Votre panier est vide.</p>`;
-      } else {
-        itemsEl.innerHTML = "";
-        cart.forEach(i => {
-          count += i.qty;
-          total += i.price * i.qty;
-          itemsEl.innerHTML += `
-            <div class="cart-item">
-              <span>${i.name} (x${i.qty})</span>
-              <strong>${(i.price * i.qty).toFixed(2)} €</strong>
-            </div>
-          `;
-        });
-      }
-
-      countEl.innerText = count;
-      totalEl.innerText = total.toFixed(2) + " €";
-    }
-
-    function checkout() {
-      if (cart.length === 0) return alert("Votre panier est vide !");
-      alert("Commande validée ! Merci de votre confiance.");
-      cart = [];
-      updateUI();
-      toggleCart();
-    }
-  </script>
-</body>
-</html>
+    //
+    
